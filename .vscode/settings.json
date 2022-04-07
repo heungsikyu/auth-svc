@@ -1,0 +1,17 @@
+{
+     "html-css-class-completion.HTMLLanguages": [
+     
+          "html",
+          "vue",
+          "razor",
+          "blade",
+          "handlebars",
+          "twig",
+          "django-html",
+          "php",
+          "markdown",
+          "erb",
+          "ejs",
+          "svelte"
+     ]
+}
