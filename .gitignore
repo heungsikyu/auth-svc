@@ -3,6 +3,7 @@ node_modules
 private.key
 public.key
 .history
+.env_dev
+target
 public
 .env_dev
-target 
