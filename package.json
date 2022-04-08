@@ -1,15 +1,15 @@
 {
-  "name": "jwtservice",
+  "name": "xmd-auth-svc",
   "version": "1.0.0",
   "main": "app.ts",
   "license": "MIT",
   "scripts": {
     "start": "node --require ts-node/register  public/app.js",
-    "jwtstart": "OTEL_EXPORTER_OTLP_ENDPOINT=127.0.0.1:4317 OTEL_RESOURCE_ATTRIBUTES=service.name=xmd-auth-svc1-back ts-node-dev -r ./src/lib/tracer.ts src/app.ts 3401",
-    "jwtstart2": "OTEL_EXPORTER_OTLP_ENDPOINT=127.0.0.1:4317 OTEL_RESOURCE_ATTRIBUTES=service.name=xmd-auth-svc2-back ts-node-dev -r ./src/lib/tracer.ts src/app.ts 3402",
-    "jwtstart3": "OTEL_EXPORTER_OTLP_ENDPOINT=127.0.0.1:4317 OTEL_RESOURCE_ATTRIBUTES=service.name=xmd-auth-svc3-back ts-node-dev -r ./src/lib/tracer.ts src/app.ts 3403",
+    "jwtstart1": "OTEL_EXPORTER_OTLP_ENDPOINT=192.168.10.157:4317 OTEL_RESOURCE_ATTRIBUTES=service.name=xmd-auth-svc1-back ts-node-dev  src/app.ts 3401",
+    "jwtstart2": "OTEL_EXPORTER_OTLP_ENDPOINT=192.168.10.157:4317 OTEL_RESOURCE_ATTRIBUTES=service.name=xmd-auth-svc2-back ts-node-dev  src/app.ts 3402",
+    "jwtstart3": "OTEL_EXPORTER_OTLP_ENDPOINT=192.168.10.157:4317 OTEL_RESOURCE_ATTRIBUTES=service.name=xmd-auth-svc3-back ts-node-dev  src/app.ts 3403",
     "build": "tsc -p .",
-    "dev": "nodemon --watch \"/**/*\" --exec \"ts-node-dev\" src/app.ts "
+    "dev": "nodemon --watch \"/**/*\" --exec \"ts-node-dev\" src/app.ts " 
   },
   "devDependencies": {
     "@opentelemetry/api": "^1.0.3",

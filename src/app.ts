@@ -1,5 +1,4 @@
 import init from './lib/tracer';
-const { sdk } = init('jwt-auth-svc-back')
 
 import * as dotenv from 'dotenv';
 import express, {Request, Response, NextFunction } from 'express';
@@ -18,7 +17,7 @@ const app: express.Application = express();
 app.use(logger); //logger 사용
 app.use(express.json()) 
 
-// * ROUTER SETTING
+/* ROUTER SETTING */
 app.use(indexRouter);  
 
 app.listen(port, () => {     
@@ -29,5 +28,6 @@ app.listen(port, () => {
 `);
 });
 
-//eureka 서버 등록 
+/* Eureka 서버 등록 */ 
 eurekaHelper.registerWithEureka(APPNAME, port);
+const { sdk } = init('xmd-auth-svc-back');

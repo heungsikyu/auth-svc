@@ -56,13 +56,13 @@ const generateToken = () => {
         expiresIn: '5m'
     };
     // generate JWT
-    const genToken = jsonwebtoken_1.default.sign(payload, privateKey, signInOptions, function (err, token) {
+    jsonwebtoken_1.default.sign(payload, privateKey, signInOptions, (err, token) => {
         console.log("SIGNTOKEN 발급 : ", token);
         if (err)
             console.log(err);
-        return token;
+        //return token;
     });
-    return genToken;
+    // return genToken;   
 };
 exports.generateToken = generateToken;
 /**

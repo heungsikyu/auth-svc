@@ -1,6 +1,8 @@
 node_modules
-env
+.env
 private.key
 public.key
 .history
-
+public
+.env_dev
+target 

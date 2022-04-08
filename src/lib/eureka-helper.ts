@@ -1,15 +1,19 @@
 //import Eureka from 'eureka-js-client';
+import * as dotenv from 'dotenv';
 const Eureka = require('eureka-js-client').Eureka;
-const eurekaHost = (process.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE || '127.0.0.1');
+const eurekaHost = (process.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE || '192.168.10.157');
 const eurekaPort = (process.env.EUREKA_PORT || '8761');
-const hostName = (process.env.HOSTNAME || '127.0.0.1')
-const ipAddr = 'localhost';
+const hostName = (process.env.HOSTNAME || '192.168.10.157')
+const ipAddr = '192.168.10.157';
 
 exports.registerWithEureka = function(appName:string , PORT:number) {
+     console.log('Eureke server IP : ', eurekaHost);
+     console.log('hostName : ', hostName);
+     console.log('ipAddr: ', ipAddr);
      const client = new Eureka({
           instance: {
                id: appName,
-               instanceId: `${appName} : ${PORT}`,
+               instanceId: `${ipAddr} : ${appName} : ${PORT}`,
                app: appName,
                hostName: hostName,
                ipAddr: ipAddr,
@@ -55,7 +59,7 @@ exports.registerWithEureka = function(appName:string , PORT:number) {
      })
 
      client.on('started', () => {
-          console.log("eureka host  " + eurekaHost);
+          console.log("eureka host : " + eurekaHost);
      })
 
      process.on('SIGINT', exitHandler.bind(null, {exit:true}));
