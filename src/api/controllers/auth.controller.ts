@@ -5,9 +5,11 @@ import { generateToken, validateToken } from '../utils/jwt.utils';
 const NAMESPACE = "Member";
 
 const checkToken = (req: Request, res: Response, next: NextFunction) => {};
+
 const signup = (req: Request, res: Response, next: NextFunction) => {
      let { id, password } = req.body;
 };
+
 const getAllMembers = (req: Request, res: Response, next: NextFunction) => {};
 
 const login = (req: Request, res:Response, next: NextFunction) => {

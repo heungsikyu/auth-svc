@@ -1,20 +1,20 @@
 FROM node:alpine
 
-WORKDIR /xmd-auth-svc
+WORKDIR /auth-svc
 
-COPY package.json .
-COPY package-lock.json . 
+COPY ./auth-svc/package.json .
+COPY ./auth-svc/package-lock.json . 
 
 RUN npm install
 
 RUN npm install -g typescript
 
-COPY src ./src
-COPY .env .
+COPY ./auth-svc/src ./src
+COPY ./auth-svc/.env .
 
-COPY private.key .
-COPY public.key . 
-COPY tsconfig.json . 
+COPY ./auth-svc/private.key .
+COPY ./auth-svc/public.key . 
+COPY ./auth-svc/tsconfig.json . 
 
 RUN npm run build
 

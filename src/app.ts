@@ -1,14 +1,17 @@
 import init from './lib/tracer';
-
+const { sdk } = init('app');
 import * as dotenv from 'dotenv';
-import express, {Request, Response, NextFunction } from 'express';
+import express from 'express';
 import logger from './api/middlewares/logger.middleware';
 import indexRouter from './api/routes/index';
 const eurekaHelper = require('./lib/eureka-helper');
 
 dotenv.config();
 /** APP 환경 변수 */
-const APPNAME: string = process.env.APP_NAME || 'xmd-auth-svc-back'; 
+const eurekaHost: string = (process.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE || '192.168.10.157');
+console.log('eurekaHost : : ', eurekaHost);
+const eurekaPort: string = (process.env.EUREKA_PORT || '8761');
+const APPNAME: string = process.env.APP_NAME || 'authbackend';  
 const port: number  = parseInt(process.argv.slice(2)[0]) || 3333 ; //서비스앱 port 번호 입력 받기 
 const app: express.Application = express();
 
@@ -29,5 +32,4 @@ app.listen(port, () => {
 });
 
 /* Eureka 서버 등록 */ 
-eurekaHelper.registerWithEureka(APPNAME, port);
-const { sdk } = init('xmd-auth-svc-back');
+eurekaHelper.registerWithEureka(APPNAME, port, eurekaHost, eurekaPort);

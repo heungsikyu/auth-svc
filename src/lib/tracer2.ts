@@ -18,7 +18,7 @@ const init = function (serviceName: string) {
 
   sdk
     .start()
-    .then(() => console.log(`${serviceName} Tracing initialized`))
+    .then(() => console.log(`${serviceName}, Tracing initialized`))
     .catch((error) => console.log('Error initializing tracing', error))
 
   // You can also use the shutdown method to gracefully shut down the SDK before process shutdown

@@ -1,19 +1,17 @@
 //import Eureka from 'eureka-js-client';
 import * as dotenv from 'dotenv';
 const Eureka = require('eureka-js-client').Eureka;
-const eurekaHost = (process.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE || '192.168.10.157');
-const eurekaPort = (process.env.EUREKA_PORT || '8761');
-const hostName = (process.env.HOSTNAME || '192.168.10.157')
-const ipAddr = '192.168.10.157';
+const hostName = (process.env.HOSTNAME || 'localhost')
+const ipAddr = '127.0.0.1';
 
-exports.registerWithEureka = function(appName:string , PORT:number) {
-     console.log('Eureke server IP : ', eurekaHost);
+exports.registerWithEureka = function(appName:string, PORT:number, eurekaHost: string, eurekaPort: string) {
+     console.log('Eureke server IP : ', eurekaHost); 
      console.log('hostName : ', hostName);
      console.log('ipAddr: ', ipAddr);
      const client = new Eureka({
           instance: {
                id: appName,
-               instanceId: `${ipAddr} : ${appName} : ${PORT}`,
+               instanceId: `${hostName} : ${ipAddr} : ${appName} : ${PORT}`,
                app: appName,
                hostName: hostName,
                ipAddr: ipAddr,
@@ -40,7 +38,7 @@ exports.registerWithEureka = function(appName:string , PORT:number) {
      client.logger.level('debug')
 
      client.start( (error:any) => {
-          console.log(error || "jwt service registered")
+          console.log(error || `Eureka service ${eurekaHost} registered by ${hostName} : ${ipAddr} : ${appName} : ${PORT}`)
      });
 
 
@@ -63,4 +61,5 @@ exports.registerWithEureka = function(appName:string , PORT:number) {
      })
 
      process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+     //process.on('SIGSTOP', exitHandler.bind(null, {exit:true}));
 };
