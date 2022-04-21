@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { generateToken, validateToken } from '../utils/jwt.utils';
+import { generateToken } from '../utils/jwt.utils';
+
 
 
 const NAMESPACE = "Member";

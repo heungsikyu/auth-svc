@@ -61,5 +61,5 @@ exports.registerWithEureka = function(appName:string, PORT:number, eurekaHost: s
      })
 
      process.on('SIGINT', exitHandler.bind(null, {exit:true}));
-     //process.on('SIGSTOP', exitHandler.bind(null, {exit:true}));
+     process.on('SIGTERM', exitHandler.bind(null, {exit:true}));
 };
