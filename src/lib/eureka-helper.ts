@@ -6,24 +6,28 @@ const ipAddr = '127.0.0.1';
 
 exports.registerWithEureka = function(appName:string, PORT:number, eurekaHost: string, eurekaPort: string) {
      console.log('Eureke server IP : ', eurekaHost); 
-     console.log('hostName : ', hostName);
+     console.log('appName : ', appName);
      console.log('ipAddr: ', ipAddr);
      const client = new Eureka({
           instance: {
-               id: appName,
+               id: appName, //SCG loadbalance적용에 반드시 필요 
                instanceId: `${hostName} : ${ipAddr} : ${appName} : ${PORT}`,
-               app: appName,
+               //instanceId: appName, //SCG loadbalance적용에 반드시 필요 
+               app: appName, //SCG loadbalance적용에 반드시 필요 
                hostName: hostName,
                ipAddr: ipAddr,
                port: {
                '$': PORT,
                '@enabled': 'true',
                },
-               vipAddress: appName,
+               vipAddress: appName,//SCG loadbalance적용에 반드시 필요 
+
                dataCenterInfo: {
                '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
                name: 'MyOwn',
                },
+               registerWithEureka: true, 
+               fetchRegistry: true
           },
           //retry 10 time for 3 minute 20 seconds.
           eureka: {
@@ -61,5 +65,6 @@ exports.registerWithEureka = function(appName:string, PORT:number, eurekaHost: s
      })
 
      process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+
      process.on('SIGTERM', exitHandler.bind(null, {exit:true}));
 };

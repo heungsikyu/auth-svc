@@ -8,11 +8,15 @@ const eurekaHelper = require('./lib/eureka-helper');
 
 dotenv.config();
 /** APP 환경 변수 */
-const eurekaHost: string = (process.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE || '192.168.10.157');
-console.log('eurekaHost : : ', eurekaHost);
+//const eurekaHost: string = (process.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE || '192.168.10.157');
 const eurekaPort: string = (process.env.EUREKA_PORT || '8761');
 const APPNAME: string = process.env.APP_NAME || 'authbackend';  
+
 const port: number  = parseInt(process.argv.slice(2)[0]) || 3333 ; //서비스앱 port 번호 입력 받기 
+
+const eurekaHost: string  = process.argv.slice(2)[1] || '127.0.0.1' ; // 
+console.log('eurekaHost : : ', eurekaHost);
+
 const app: express.Application = express();
 
 /** APP 환경셋팅 : middleware 설정 */

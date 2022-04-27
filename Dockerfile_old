@@ -1,0 +1,29 @@
+FROM node:alpine
+
+WORKDIR /auth-svc
+
+COPY ./auth-svc/package.json .
+COPY ./auth-svc/package-lock.json . 
+
+RUN npm install
+
+RUN npm install -g typescript
+
+COPY ./auth-svc/src ./src
+COPY ./auth-svc/.env .
+
+COPY ./auth-svc/private.key .
+COPY ./auth-svc/public.key . 
+COPY ./auth-svc/tsconfig.json . 
+
+RUN npm run build
+
+ENV APP_PORT="3401"
+
+EXPOSE ${APP_PORT}
+
+
+
+#ENTRYPOINT ["./run.sh"]
+
+
